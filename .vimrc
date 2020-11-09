@@ -5,7 +5,10 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'slim-template/vim-slim.git'
+Plug 'slim-template/vim-slim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -31,6 +34,8 @@ let g:netrw_liststyle = 3
 " 見た目系
 " 行番号を表示
 set number
+" カーソルラインの表示
+set cursorline
 " 現在の行を強調表示
 set cursorline
 " 行末の1文字先までカーソルを移動できるように
