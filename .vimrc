@@ -32,6 +32,9 @@ let g:netrw_liststyle = 3
 
 
 " 見た目系
+" vim-airline
+let g:airline_theme = 'papercolor'
+
 " 行番号を表示
 set number
 " カーソルラインの表示
