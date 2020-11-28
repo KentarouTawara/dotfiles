@@ -23,6 +23,34 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 # fzf関係
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+ec () {
+    if [[ -n $ZSH_VERSION ]]
+    then
+         print -r -- "$@"
+    else
+         echo -E -- "$@"
+    fi
+}
+
+fe() {
+    IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+      [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+    }
+
+fif() {
+      if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+        rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
+fo() {
+    IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
+      key=$(head -1 <<< "$out")
+        file=$(head -2 <<< "$out" | tail -1)
+          if [ -n "$file" ]; then
+                [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+                  fi
+}
+
 # peco関係
 # history
 HISTFILE=$HOME/.zsh-history

@@ -15,6 +15,8 @@ call plug#end()
 " setting
 "文字コードをUFT-8に設定
 set fenc=utf-8
+set fileformats=unix,dos,mac
+set fileencodings=utf-8,sjis
 " バックアップファイルを作らない
 set nobackup
 " スワップファイルを作らない
@@ -82,3 +84,6 @@ set wrapscan
 set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+" yank をクリップボードにコピー
+set clipboard+=unnamed
